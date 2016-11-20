@@ -1,0 +1,8 @@
+# Copyright (c) 2016 Kazumasa Kohtaka. All rights reserved.
+# This file is available under the MIT license.
+
+- name: Join a Kubernetes cluster
+  shell: |
+    kubeadm join \
+      --token={{ k8s_token }} \
+      {{ master_ip }}

@@ -1,0 +1,16 @@
+# Copyright (c) 2016 Kazumasa Kohtaka. All rights reserved.
+# This file is available under the MIT license.
+
+- name: Initialize a Kubernetes cluster
+  shell: |
+    kubeadm init \
+      --api-advertise-addresses={{ master_ip }} \
+      --token={{ k8s_token }} \
+      --use-kubernetes-version={{ k8s_version }}
+
+- name: Fetch a Kubernetes config file
+  fetch: |
+    src=/etc/kubernetes/admin.conf \
+    dest=kubeconfig \
+    fail_on_missing=true \
+    flat=true
